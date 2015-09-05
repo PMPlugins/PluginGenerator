@@ -45,20 +45,22 @@ set /p author=Enter Author name:
 IF [%author%]==[] goto error
 REM set /p des=Enter description for plugin:
 REM IF [%des%]==[] goto error
+goto startgen
 
+:startgen
 echo -------------------------------------
 	echo Generating folder structure template...
 	mkdir %foldername%
 	cd %foldername%
 	mkdir src
-	(
-		echo name: %pname%
-		echo main: %ns1%\%ns2%\%mfn%
-		echo version: "%ver%"
-		echo api: [%api%]
-		echo author: %author%
-		REM echo description: %des%
-	) > plugin.yml
+		(
+			echo name: %pname%
+			echo main: %ns1%\%ns2%\%mfn%
+			echo version: "%ver%"
+			echo api: [%api%]
+			echo author: %author%
+			REM echo description: %des%
+		) > plugin.yml
 	if %cfg%== y (
 		mkdir resources 
 		cd resources
